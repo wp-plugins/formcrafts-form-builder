@@ -15,12 +15,7 @@ FormCrafts allows you to create gorgeous forms and manage submissions
 FormCrafts is a drag-and-drop form builder to create and embed forms, and track submissions. You can embed the forms as inline forms, or popup forms. The forms look gorgeous, too.
 
 ### Manage Submissions
-FormCrafts also has an intuitive submissions manager. You can manage your business workflow too. For example, you can automatically add tags to new submissions, search for submissions with particular values, etc ...
-
-Some practical uses:
-
-1. Your own mini customer-support portal
-2. Event registration platform
+FormCrafts also has an intuitive submissions manager. You can manage your business workflow too. For example, you can create your own mini customer-support portal, or event registration platform.
 
 ### Features:
 
@@ -30,7 +25,7 @@ Some practical uses:
 4. Conditional logic
 5. Special fields (star rating field, smiley rating field, sliders ...)
 6. SSL secured
-7. Intuitive submissions manager
+7. Add tags to submissions
 8. Send autoresponders, with customized data
 9. Accept multiple files
 10. Customizable email notifications
