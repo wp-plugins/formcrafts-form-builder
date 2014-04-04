@@ -37,11 +37,6 @@ Some practical uses:
 11. Auto-save form data (allows users to finish filling the form later)
 12. Export all submissions to CSV
 
-== Installation ==
-
-1. Install and activate the plugin
-2. Click on FormCrafts on the WP menu, and follow the steps
-
 == Screenshots ==
 
 1. Drag-and-drop form builder
