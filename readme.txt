@@ -17,12 +17,15 @@ Features:
 
 1. Drag-and-drop builder
 2. Multi-page forms
-3. Conditional logic
-4. SSL secured
-5. Intuitive submissions manager
-6. Autoresponders
-7. Customizable email notifications
-8. Auto-save form data (allows users to finish filling the form later)
+3. Popup forms
+4. Conditional logic
+5. SSL secured
+6. Intuitive submissions manager
+7. Send autoresponders, with customized data
+8. Accept multiple files
+9. Customizable email notifications
+10. Auto-save form data (allows users to finish filling the form later)
+11. Export all submissions to CSV
 
 == Installation ==
 
@@ -31,11 +34,9 @@ Features:
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Your FormCrafts dashboard, in WordPress. Cool, huh?
+2. An intuitive submissions managing interface
+2. Conditional logic
 
 == Changelog ==
 
