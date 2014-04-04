@@ -11,7 +11,8 @@ FormCrafts allows you to create gorgeous forms and manage submissions
 
 == Description ==
 
-A drag-and-drop form builder to create and embed forms, and track submissions.
+### Create awesome forms, lightning fast!
+FormCrafts is a drag-and-drop form builder to create and embed forms, and track submissions. You can embed the forms as inline forms, or popup forms. 
 
 Features:
 
@@ -34,9 +35,10 @@ Features:
 
 == Screenshots ==
 
-1. Your FormCrafts dashboard, in WordPress. Cool, huh?
-2. An intuitive submissions managing interface
-2. Conditional logic
+1. Drag-and-drop form builder
+2. Your FormCrafts dashboard, in WordPress. Cool, huh?
+3. An intuitive submissions managing interface
+4. Conditional logic
 
 == Changelog ==
 
