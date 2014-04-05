@@ -17,7 +17,10 @@ FormCrafts is a drag-and-drop form builder to create and embed forms, and track 
 ### Manage Submissions
 FormCrafts also has an intuitive submissions manager. You can manage your business workflow too. For example, you can create your own mini customer-support portal, or event registration platform.
 
-### Features:
+### Online Docs
+We have [online documentation here](http://formcrafts.com/help/):
+
+### Features
 
 1. Drag-and-drop builder
 2. Multi-page forms
