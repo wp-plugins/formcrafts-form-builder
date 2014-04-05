@@ -3,7 +3,6 @@ Contributors: nish@ncrafts.net
 Tags: form builder, contact form
 Requires at least: 3.4
 Tested up to: 3.8
-Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,5 +43,8 @@ We have [online documentation here](http://formcrafts.com/help/).
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.1 =
+* Bug fix for the API Key missing issue
+
+= 1.0.0 =
 * Initial release
