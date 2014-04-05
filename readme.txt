@@ -1,4 +1,4 @@
-=== FormCrafts - form builder ===
+=== FormCrafts - Form Builder ===
 Contributors: nish@ncrafts.net
 Tags: form builder, contact form
 Requires at least: 3.4
