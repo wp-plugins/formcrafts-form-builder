@@ -5,9 +5,7 @@
 		x = w.innerWidth || e.clientWidth || g.clientWidth,
 		y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 		y = y - 96;
-		/* var h = document.getElementById('fc-cover').setAttribute("style","height:"+y+"px"); */
 
-		window.base = 'http://localhost/fc/laravel/public/';
 		window.base = 'http://formcrafts.com/';
 		function ajax_submit(id)
 		{

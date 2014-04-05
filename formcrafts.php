@@ -19,8 +19,8 @@
 
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
- * Description: Form Builder
- * Version: 1.0
+ * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
+ * Version: 1.0.1
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -72,9 +72,9 @@
     if ($content==null || empty($content))
     {
       echo "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'formcrafts.com/js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script>";
-   }
-   else
-   {
+    }
+    else
+    {
      echo "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'formcrafts.com/js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a data-target='#".$bind."' data-toggle='fcmodal'>".$content."</a>";
    }     
  }
@@ -166,7 +166,7 @@ function formcrafts_wp_edit_button($context) {
     box-shadow: 0px 1px 9px #999;
     -moz-box-shadow: 0px 1px 9px #999;
     -webkit-box-shadow: 0px 1px 9px #999;
-    margin-left: -50px;
+    margin-left: -60px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -372,34 +372,48 @@ jQuery(document).ready(function(){
    if (response.success && response.forms)
    {
     var html = '';
-    for (form in response.forms)
+    if (response.forms.length==0)
     {
-     html = form == 0 ? html + '<li data-index="'+response.forms[form]['id']+'" class="active">'+response.forms[form]['name']+'</li>' : html + '<li data-index="'+response.forms[form]['id']+'">'+response.forms[form]['name']+'</li>';
+      html = '<center><bR>No forms created<br><br></center>'; 
+      jQuery('#formcrafts-btn-tooltip').html(html);               
+
+    }
+    else
+    {
+      for (form in response.forms)
+      {
+      html = form == 0 ? html + '<li data-index="'+response.forms[form]['id']+'" class="active">'+response.forms[form]['name']+'</li>' : html + '<li data-index="'+response.forms[form]['id']+'">'+response.forms[form]['name']+'</li>';
+     }
+     jQuery('#formcrafts-btn-tooltip-forms').html(html);
    }
-   jQuery('#formcrafts-btn-tooltip-forms').html(html);   						
+
+ }
+ else if (response.failed)
+ {
+   jQuery('#formcrafts-btn-tooltip').html("<a style='color: #48e; font-size: 14px; margin: 20px 0px; display: block; text-align: center' target='_blank' href='<?php echo admin_url(); ?>admin.php?page=formcrafts_admin_page'>Click here and log in</a>");
  }
  formcrafts_refresh_shortcode();
  jQuery('#formcrafts-btn-cover').removeClass('formcrafts-loading');
 });	   				
 });
 
- jQuery('body').on('click', '.formcrafts-btn-nav > span', function(event){
-   jQuery(this).parent().find('> span').removeClass('active');
-   jQuery(this).addClass('active');
-   var abc = jQuery(this).index() + 1;
-   jQuery(this).parent().find('> .formcrafts-btn-tabs > div').hide();
-   jQuery(this).parent().find('> .formcrafts-btn-tabs > div').removeClass('active');
+jQuery('body').on('click', '.formcrafts-btn-nav > span', function(event){
+ jQuery(this).parent().find('> span').removeClass('active');
+ jQuery(this).addClass('active');
+ var abc = jQuery(this).index() + 1;
+ jQuery(this).parent().find('> .formcrafts-btn-tabs > div').hide();
+ jQuery(this).parent().find('> .formcrafts-btn-tabs > div').removeClass('active');
 
-   jQuery(this).parent().find('> .formcrafts-btn-tabs > div:nth-child('+abc+')').show();
-   jQuery(this).parent().find('> .formcrafts-btn-tabs > div:nth-child('+abc+')').addClass('active');
-   formcrafts_refresh_shortcode();
- });
+ jQuery(this).parent().find('> .formcrafts-btn-tabs > div:nth-child('+abc+')').show();
+ jQuery(this).parent().find('> .formcrafts-btn-tabs > div:nth-child('+abc+')').addClass('active');
+ formcrafts_refresh_shortcode();
+});
 
- jQuery('body').on('click', '#formcrafts-btn-tooltip-forms li', function(event){
-   jQuery(this).parent().find('> li').removeClass('active');
-   jQuery(this).addClass('active');
-   formcrafts_refresh_shortcode();
- })
+jQuery('body').on('click', '#formcrafts-btn-tooltip-forms li', function(event){
+ jQuery(this).parent().find('> li').removeClass('active');
+ jQuery(this).addClass('active');
+ formcrafts_refresh_shortcode();
+})
 
 });
 </script>
@@ -452,7 +466,7 @@ function formcrafts_admin()
 
 function formcrafts_admin_page()
 {
- global $wp_version;
+ global $wp_version, $path;
 
  if ($wp_version <= 3.8)
  {
@@ -510,7 +524,14 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
  y = w.innerHeight|| e.clientHeight|| g.clientHeight;
  document.getElementById('fc-cover').style.height = ((Math.max(y,500))-32)+"px";
 
- var url = "http://formcrafts.com/wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>";
+ if ("<?php echo get_option( 'formcrafts_api' ); ?>"=="")
+ {
+   var url = "<?php echo $path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>&logout=true";
+ }
+ else
+ {
+   var url = "<?php echo $path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>";  
+ }
  transport = new easyXDM.Socket(
  {
    remote: url,

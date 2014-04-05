@@ -3,7 +3,7 @@ Contributors: nish@ncrafts.net
 Tags: form builder, contact form
 Requires at least: 3.4
 Tested up to: 3.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ FormCrafts is a drag-and-drop form builder to create and embed forms, and track 
 FormCrafts also has an intuitive submissions manager. You can manage your business workflow too. For example, you can create your own mini customer-support portal, or event registration platform.
 
 ### Online Docs
-We have [online documentation here](http://formcrafts.com/help/):
+We have [online documentation here](http://formcrafts.com/help/).
 
 ### Features
 

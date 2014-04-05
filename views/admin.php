@@ -173,7 +173,7 @@
 			text-decoration: none;
 			color: #999;
 			cursor: pointer;
-			margin-top: 4px;
+			margin-top: 7px;
 		}
 		.blue-link:hover
 		{
@@ -221,7 +221,7 @@
 			<input type='password' placeholder='password' class='input-one password large' name='password'>
 			<button type='submit' class='submit btn btn-blue loading-transition large' style='margin-top: 5px'>log in</button>
 			<div class='response'></div>
-			<div class='toggle-form blue-link toggle-signup' style='font-size: 14px'>Create a free account</div>
+			<div class='toggle-form blue-link toggle-signup' style='font-size: 15px'>or, create a free account</div>
 		</form>
 
 		<form class='form-user-alone' action='javascript:ajax_submit("form-signup-alone")' data-ajax='user/signup' id='form-signup-alone' style='display: none'>
@@ -240,7 +240,7 @@
 			<input type='hidden' id='timezone-input' name='offset' value=''>
 			<button type='submit' class='submit btn btn-blue loading-transition large' style='margin-top: 5px'>sign up</button>
 			<div class='response'></div>
-			<div class='toggle-form blue-link toggle-signup' style='font-size: 14px'>Already have an account? Login</div>
+			<div class='toggle-form blue-link toggle-signup' style='font-size: 15px'>Already have an account? Login</div>
 		</form>
 	</div>
 	<span style='height: 0; width: 0'></span>
