@@ -1,12 +1,12 @@
 === FormCrafts - Form Builder ===
 Contributors: nish@ncrafts.net
-Tags: form builder, contact form
+Tags: contact form, form builder, fast form, contact form builder, feedback form, email forms, ajax form, captcha
 Requires at least: 3.4
 Tested up to: 3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-FormCrafts allows you to create gorgeous forms and manage submissions
+Create gorgeous forms for your site using this drag-and-drop builder, and manage submissions.
 
 == Description ==
 
