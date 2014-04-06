@@ -36,8 +36,8 @@ We have [online documentation here](http://formcrafts.com/help/).
 
 == Screenshots ==
 
-1. Drag-and-drop form builder
-2. Your FormCrafts dashboard, in WordPress. Cool, huh?
+1. Your FormCrafts dashboard, in WordPress. Cool, huh?
+2. Drag-and-drop form builder
 3. An intuitive submissions managing interface
 4. Conditional logic
 
