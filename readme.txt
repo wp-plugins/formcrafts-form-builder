@@ -22,6 +22,9 @@ We have [online documentation here](http://formcrafts.com/help).
 ### Examples
 You can check out some [sample forms here](http://formcrafts.com/examples). When you add a new form, you can use these forms as templates.
 
+### Tutorials
+1. [How to Run Your Own Customer Support Portal](http://formcrafts.com/blog/tutorials/how-to-make-your-own-customer-support-portal)
+
 ### Features
 
 1. Drag-and-drop builder
