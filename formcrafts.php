@@ -27,8 +27,14 @@
 
 */
 
+   if ($_SERVER['HTTP_HOST']=='localhost')
+   {
+   $path = 'http://localhost/fc/laravel/public/';    
+   }
+   else
+   {
    $path = 'http://formcrafts.com/';
-   // $path = 'http://localhost/fc/laravel/public/';
+   }
    global $path;
 
 
@@ -38,7 +44,6 @@
    add_action('wp_ajax_nopriv_formcrafts_save_api', 'formcraft_save_api');
 
    add_shortcode( 'formcrafts', 'add_formcrafts_shortcode' );
-
 
    function formcrafts_save_api()
    {
