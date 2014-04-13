@@ -20,10 +20,11 @@ FormCrafts also has an intuitive submissions manager. You can manage your busine
 We have [online documentation here](http://formcrafts.com/help).
 
 ### Examples
-You can check out some [sample forms here](http://formcrafts.com/examples). When you add a new form, you can use these forms as templates.
+You can check out some [sample forms here](http://formcrafts.com/examples): contact us form, newsletter form, customer support form, event planner form, survey form, job application form etc... When you add a new form, you can use these forms as templates.
 
 ### Tutorials
 1. [How to Run Your Own Customer Support Portal](http://formcrafts.com/blog/tutorials/how-to-make-your-own-customer-support-portal)
+1. [How To Make a Popup Site Feedback Form](http://formcrafts.com/blog/tutorials/how-to-make-a-popup-site-feedback-form)
 
 ### Features
 
