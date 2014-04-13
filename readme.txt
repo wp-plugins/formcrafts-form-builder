@@ -1,6 +1,6 @@
 === FormCrafts - Form Builder ===
 Contributors: nish@ncrafts.net
-Tags: contact form, form builder, fast form, contact form builder, feedback form, email forms, ajax form, captcha
+Tags: contact form, form builder, fast form, contact form builder, feedback form, email forms, ajax form, captcha, file upload, newsletter form, customer support form, drag and drop form builder, lead generation form, event planner form
 Requires at least: 3.4
 Tested up to: 3.8
 License: GPLv2 or later
