@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -29,13 +29,13 @@
 
    if ($_SERVER['HTTP_HOST']=='localhost')
    {
-   $path = 'http://localhost/fc/laravel/public/';    
+   $fc_path = 'http://localhost/fc/laravel/public/';    
    }
    else
    {
-   $path = 'http://formcrafts.com/';
+   $fc_path = 'http://formcrafts.com/';
    }
-   global $path;
+   global $fc_path;
 
 
    add_action('wp_ajax_formcrafts_get_forms', 'formcrafts_get_forms');
@@ -100,11 +100,11 @@ else
 
 function formcrafts_get_forms()
 {
-  global $path;
+  global $fc_path;
   $api = get_option( 'formcrafts_api' );
   $ch = curl_init();
   curl_setopt_array($ch, array(
-   CURLOPT_URL            => $path.'api/get_forms?api='.$api,
+   CURLOPT_URL            => $fc_path.'api/get_forms?api='.$api,
    CURLOPT_RETURNTRANSFER => 1
    ));
   $result = curl_exec($ch);
@@ -479,7 +479,7 @@ function formcrafts_admin()
 
 function formcrafts_admin_page()
 {
- global $wp_version, $path;
+ global $wp_version, $fc_path;
 
  if ($wp_version <= 3.8)
  {
@@ -539,12 +539,13 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
 
  if ("<?php echo get_option( 'formcrafts_api' ); ?>"=="")
  {
-   var url = "<?php echo $path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>&logout=true";
+   var url = "<?php echo $fc_path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>&logout=true";
  }
  else
  {
-   var url = "<?php echo $path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>";  
+   var url = "<?php echo $fc_path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>";  
  }
+ console.log(url);
  transport = new easyXDM.Socket(
  {
    remote: url,
