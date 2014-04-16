@@ -1,6 +1,7 @@
 <?php
 
-/* 
+/*
+
    Copyright 2013  Nishant Agrawal  (email : nishantagrawal234@gmail.com)
 
    This program is free software; you can redistribute it and/or modify
@@ -19,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -32,7 +33,7 @@
    }
    else
    {
-   $fc_path = 'http://formcrafts.com/';
+   $fc_path = isset($_SERVER['HTTPS']) ? 'https://formcrafts.com/' : 'http://formcrafts.com/';
    }
    global $fc_path;
 
@@ -524,7 +525,7 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
   overflow: visible;
 }
 </style>	
-<div id='fc-cover' style='background-color: #fff; position: absolute; top: 0; bottom: 0; left: 0px; right: 0'>
+<div id='fc-cover' style='background-color: #fff; position: absolute; top: 0; bottom: 0; left: 14px; right: 0'>
 </div>
 <script type="text/javascript" src="<?php echo plugins_url( 'easyXDM.min.js', __FILE__ ); ?>"></script>
 <script>

@@ -51,6 +51,9 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 == Changelog ==
 
 = 1.0.1 =
+* Bug fix for blank page issue on HTTPS sites
+
+= 1.0.1 =
 * Bug fix for the API Key missing issue
 
 = 1.0.0 =
