@@ -1,7 +1,6 @@
 <?php
 
-/*  
-
+/* 
    Copyright 2013  Nishant Agrawal  (email : nishantagrawal234@gmail.com)
 
    This program is free software; you can redistribute it and/or modify
@@ -20,7 +19,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.2
+ * Version: 1.0.1
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
