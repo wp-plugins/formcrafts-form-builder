@@ -29,11 +29,11 @@
 
    if ($_SERVER['HTTP_HOST']=='localhost')
    {
-   $fc_path = 'http://localhost/fc/laravel/public/';    
+     $fc_path = 'http://localhost/fc/laravel/public/';    
    }
    else
    {
-   $fc_path = isset($_SERVER['HTTPS']) ? 'https://formcrafts.com/' : 'http://formcrafts.com/';
+     $fc_path = isset($_SERVER['HTTPS']) ? 'https://formcrafts.com/' : 'http://formcrafts.com/';
    }
    global $fc_path;
 
@@ -60,22 +60,23 @@
 
   extract( shortcode_atts( array(
    'id' => '1',
+   'name' => 'FormCrafts',
    'type' => 'Inline Form',
    'align' => 'center',
    'bind' => 'f'.substr(md5(rand()), 0, 5)
    ), $atts ) );
 
-   if ($_SERVER['HTTP_HOST']=='localhost')
-   {
-   $short_path = 'localhost/fc/laravel/public/';    
-   }
-   else
-   {
-   $short_path = 'formcrafts.com/';
-   } 
-
-  if ( $type=='popup' )
+  if ($_SERVER['HTTP_HOST']=='localhost')
   {
+   $short_path = 'localhost/fc/laravel/public/';    
+ }
+ else
+ {
+   $short_path = 'formcrafts.com/';
+ } 
+
+ if ( $type=='popup' )
+ {
    if ( $align=='left' || $align=='right' )
    {   
      echo "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'".$align."','t':'".$content."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script>";
@@ -88,13 +89,13 @@
     }
     else
     {
-     echo "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a data-target='#".$bind."' data-toggle='fcmodal'>".$content."</a>";
+     echo "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a href='http://".$short_path.'a/'.$id."' data-target='#".$bind."' data-toggle='fcmodal'>".$content."</a>";
    }     
  }
 }
 else
 {
-  echo "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'></div>";
+  echo "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div>";
 }
 }
 
@@ -347,11 +348,12 @@ function formcrafts_wp_edit_button($context) {
    var index = jQuery('.formcrafts-btn-tooltip-type.active').index();
    var align = jQuery('.formcrafts-btn-tooltip-align.active:eq('+index+')').text().toLowerCase();
    var form = jQuery('#formcrafts-btn-tooltip-forms li.active').attr('data-index');
+   var name = jQuery('#formcrafts-btn-tooltip-forms li.active').text();
    var rand = 'f'+Math.random().toString(36).slice(-4);
 
    if (type=='Inline Form')
    {
-    var shortcode = "[formcrafts id='"+form+"' align='"+align+"'][/formcrafts]";
+    var shortcode = "[formcrafts id='"+form+"' name='"+name+"' align='"+align+"'][/formcrafts]";
   }
   else
   {
@@ -395,14 +397,14 @@ jQuery(document).ready(function(){
     {
       for (form in response.forms)
       {
-      html = form == 0 ? html + '<li data-index="'+response.forms[form]['id']+'" class="active">'+response.forms[form]['name']+'</li>' : html + '<li data-index="'+response.forms[form]['id']+'">'+response.forms[form]['name']+'</li>';
-     }
-     jQuery('#formcrafts-btn-tooltip-forms').html(html);
-   }
+        html = form == 0 ? html + '<li data-index="'+response.forms[form]['id']+'" class="active">'+response.forms[form]['name']+'</li>' : html + '<li data-index="'+response.forms[form]['id']+'">'+response.forms[form]['name']+'</li>';
+      }
+      jQuery('#formcrafts-btn-tooltip-forms').html(html);
+    }
 
- }
- else if (response.failed)
- {
+  }
+  else if (response.failed)
+  {
    jQuery('#formcrafts-btn-tooltip').html("<a style='color: #48e; font-size: 14px; margin: 20px 0px; display: block; text-align: center' target='_blank' href='<?php echo admin_url(); ?>admin.php?page=formcrafts_admin_page'>Click here and log in</a>");
  }
  formcrafts_refresh_shortcode();
