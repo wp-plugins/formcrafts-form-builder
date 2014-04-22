@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -106,7 +106,8 @@ function formcrafts_get_forms()
   $ch = curl_init();
   curl_setopt_array($ch, array(
    CURLOPT_URL            => $fc_path.'api/get_forms?api='.$api,
-   CURLOPT_RETURNTRANSFER => 1
+   CURLOPT_RETURNTRANSFER => 1,
+   CURLOPT_SSL_VERIFYPEER => false   
    ));
   $result = curl_exec($ch);
   curl_close($ch);
@@ -390,8 +391,7 @@ jQuery(document).ready(function(){
     if (response.forms.length==0)
     {
       html = '<center><bR>No forms created<br><br></center>'; 
-      jQuery('#formcrafts-btn-tooltip').html(html);               
-
+      jQuery('#formcrafts-btn-tooltip').html(html);
     }
     else
     {
@@ -403,7 +403,7 @@ jQuery(document).ready(function(){
     }
 
   }
-  else if (response.failed)
+  else
   {
    jQuery('#formcrafts-btn-tooltip').html("<a style='color: #48e; font-size: 14px; margin: 20px 0px; display: block; text-align: center' target='_blank' href='<?php echo admin_url(); ?>admin.php?page=formcrafts_admin_page'>Click here and log in</a>");
  }

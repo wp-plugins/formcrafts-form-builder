@@ -50,7 +50,10 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.0.3 =
+* Bug fix for empty API response
+
+= 1.0.2 =
 * Bug fix for blank page issue on HTTPS sites
 
 = 1.0.1 =
