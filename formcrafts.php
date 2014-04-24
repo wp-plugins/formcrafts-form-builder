@@ -527,7 +527,7 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
   overflow: visible;
 }
 </style>	
-<div id='fc-cover' style='background-color: #fff; position: absolute; top: 0; bottom: 0; left: 14px; right: 0; z-index: 100'>
+<div id='fc-cover' style='background-color: #fff; position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 100'>
 </div>
 <script type="text/javascript" src="<?php echo plugins_url( 'easyXDM.min.js', __FILE__ ); ?>"></script>
 <script>

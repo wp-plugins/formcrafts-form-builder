@@ -2,7 +2,7 @@
 Contributors: nish@ncrafts.net
 Tags: contact form, form builder, fast form, contact form builder, feedback form, email forms, ajax form, captcha, file upload, newsletter form, customer support form, drag and drop form builder, lead generation form, event planner form
 Requires at least: 3.4
-Tested up to: 3.8
+Tested up to: 3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,14 +32,15 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 2. Multi-page forms
 3. Popup forms
 4. Conditional logic
-5. Special fields (star rating field, smiley rating field, sliders ...)
-6. SSL secured
-7. Add tags to submissions
-8. Send autoresponders, with customized data
-9. Accept multiple files
-10. Customizable email notifications
-11. Auto-save form data (allows users to finish filling the form later)
-12. Export all submissions to CSV
+5. Use math formulas in forms
+6. Special fields (star rating field, smiley rating field, sliders ...)
+7. SSL secured
+8. Add tags to submissions
+9. Send autoresponders, with customized data
+10. Accept multiple files
+11. Customizable email notifications
+12. Auto-save form data (allows users to finish filling the form later)
+13. Export all submissions to CSV
 
 == Screenshots ==
 
