@@ -51,6 +51,10 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 == Changelog ==
 
+= 1.0.4 =
+* Removed the bind attribute from the shortcodes, which appeared by default
+* Fixed a URL encoding issue, which was throwing a 404 error
+
 = 1.0.3 =
 * Bug fix for empty API response
 

@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -45,7 +45,7 @@
 
    add_shortcode( 'formcrafts', 'add_formcrafts_shortcode' );
 
-   function formcrafts_save_api()
+  function formcrafts_save_api()
    {
     if ( !isset($_GET['api']) || !isset($_GET['redirect']) )
     {
@@ -358,7 +358,7 @@ function formcrafts_wp_edit_button($context) {
   }
   else
   {
-    var shortcode = "[formcrafts id='"+form+"' type='popup' align='"+align+"' bind='"+rand+"']Click Here[/formcrafts]";
+    var shortcode = "[formcrafts id='"+form+"' type='popup' align='"+align+"']Click Here[/formcrafts]";
   }
   jQuery('#formcrafts-btn-shortcode').text(shortcode);
 }
@@ -504,7 +504,7 @@ else
   <style>
    #wpcontent, #wpfooter
    {
-    margin-left: 160px;
+    margin-left: 160px !important;
   }
 </style>
 <?php
@@ -547,19 +547,17 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
  {
    var url = "<?php echo $fc_path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>";  
  }
- console.log(url);
  transport = new easyXDM.Socket(
  {
    remote: url,
    container: 'fc-cover',
    onMessage: function(message, origin){
     message = jQuery.parseJSON( message );
-
     if (typeof message.redirect=='undefined'){return false;}
     jQuery.ajax({
       url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
       type: 'GET',
-      data: 'action=formcrafts_save_api&redirect='+message.redirect+'&api='+message.api,
+      data: 'action=formcrafts_save_api&redirect='+encodeURIComponent(message.redirect)+'&api='+message.api,
     }).done(function(response){
     }).always(function(response){
       data = '{ "redirect": "'+response+'" }';
