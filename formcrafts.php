@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -58,6 +58,8 @@
 
  function add_formcrafts_shortcode( $atts, $content = null ){
 
+  global $fc_path;
+
   extract( shortcode_atts( array(
    'id' => '1',
    'name' => 'FormCrafts',
@@ -79,7 +81,7 @@
  {
    if ( $align=='left' || $align=='right' )
    {   
-     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'".$align."','t':'".$content."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script>";
+     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'".$align."','t':'".$content."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a id='#".$bind."_a' href='".$fc_path."a/".$id."'></a>";
    }
    else
    {
