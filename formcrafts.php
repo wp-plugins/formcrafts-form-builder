@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -91,13 +91,13 @@
     }
     else
     {
-     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a href='http://".$short_path.'a/'.$id."' data-target='#".$bind."' data-toggle='fcmodal'>".$content."</a>";
+     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a href='".$fc_path.'a/'.$id."' data-target='#".$bind."' data-toggle='fcmodal'>".$content."</a>";
    }     
  }
 }
 else
 {
-  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div>";
+  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div><a class='fcpbl ".$align."' href='".$fc_path."?pw=pwl'>powered by <span>FormCrafts</span></a>";
 }
 }
 
@@ -559,7 +559,7 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
     jQuery.ajax({
       url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
       type: 'GET',
-      data: 'action=formcrafts_save_api&redirect='+encodeURIComponent(message.redirect)+'&api='+message.api,
+      data: 'action=formcrafts_save_api&api='+message.api+'&redirect='+encodeURIComponent(message.redirect),
     }).done(function(response){
     }).always(function(response){
       data = '{ "redirect": "'+response+'" }';

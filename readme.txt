@@ -51,6 +51,10 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 == Changelog ==
 
+= 1.0.6 =
+* Fixed an odd bug which was breaking URL structures, and resulting in 404s, instead of showing the dashboard
+* Made a change in how form shortcodes are parsed in the backend
+
 = 1.0.5 =
 * Small internal change in how the shortcode parses the form data to pull
 
