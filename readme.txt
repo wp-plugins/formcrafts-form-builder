@@ -51,6 +51,9 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 == Changelog ==
 
+= 1.0.7 =
+* Shows an error if cURL isn't available
+
 = 1.0.6 =
 * Fixed an odd bug which was breaking URL structures, and resulting in 404s, instead of showing the dashboard
 * Made a change in how form shortcodes are parsed in the backend
