@@ -68,6 +68,15 @@
    'bind' => 'f'.substr(md5(rand()), 0, 5)
    ), $atts ) );
 
+  if ($id % 2 == 0)
+  {
+    $powered_text = 'made with <span>FormCrafts</span> - online form builder';
+  }
+  else
+  {
+    $powered_text = 'powered by <span>FormCrafts</span>';
+  }
+
   if ($_SERVER['HTTP_HOST']=='localhost')
   {
    $short_path = 'localhost/fc/laravel/public/';    
@@ -97,7 +106,7 @@
 }
 else
 {
-  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div><a class='fcpbl ".$align."' href='".$fc_path."?pw=pwl'>powered by <span>FormCrafts</span></a>";
+  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div><a class='fcpbl ".$align."' href='".$fc_path."?pw=pwl'>$powered_text</a>";
 }
 }
 
@@ -570,6 +579,7 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
  {
    var url = "<?php echo $fc_path; ?>wp/user/login?return=<?php echo urlencode(plugins_url('',__FILE__)); ?>";  
  }
+ window.formcrafts_api = '<?php echo get_option( 'formcrafts_api' ); ?>';
  transport = new easyXDM.Socket(
  {
    remote: url,
@@ -584,11 +594,11 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
     }).done(function(response){
     }).always(function(response){
       data = '{ "redirect": "'+response+'" }';
-      transport.postMessage(data);         
+      transport.postMessage(data);
     });   
   },
   onReady: function(){
-
+      if (window.formcrafts_api=='') { transport.postMessage('no api'); }
   }
 });      
 </script> 

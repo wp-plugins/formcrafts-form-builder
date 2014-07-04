@@ -6,7 +6,7 @@ Tested up to: 3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create gorgeous forms for your site using this drag-and-drop builder, and manage submissions.
+Create gorgeous forms for your site using this drag-and-drop form builder.
 
 == Description ==
 
@@ -14,10 +14,10 @@ Create gorgeous forms for your site using this drag-and-drop builder, and manage
 FormCrafts is a drag-and-drop form builder to create and embed forms, and track submissions. You can embed the forms as inline forms, or popup forms. The forms look gorgeous, too.
 
 ### Manage Submissions
-FormCrafts also has an intuitive submissions manager. You can manage your business workflow too. For example, you can create your own mini customer-support portal, or event registration platform.
+FormCrafts also has an intuitive submissions manager. You can manage your business workflow too. For example, you can create your own mini customer-support portal, or event registration platform. It has advanced searching, filtering, and exporting capabilities.
 
 ### Online Documentation
-We have [online documentation here](http://formcrafts.com/help).
+We have [online documentation here](http://formcrafts.com/help) on using the form builder.
 
 ### Examples
 You can check out some [sample forms here](http://formcrafts.com/examples): contact us form, newsletter form, customer support form, event planner form, survey form, job application form etc... When you add a new form, you can use these forms as templates.
@@ -28,7 +28,7 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 ### Features
 
-1. Drag-and-drop builder
+1. Drag-and-drop form builder
 2. Multi-page forms
 3. Popup forms
 4. Conditional logic
