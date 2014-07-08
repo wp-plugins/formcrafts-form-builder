@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.7
+ * Version: 1.0.8
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -45,7 +45,7 @@
 
    add_shortcode( 'formcrafts', 'add_formcrafts_shortcode' );
 
-  function formcrafts_save_api()
+   function formcrafts_save_api()
    {
     if ( !isset($_GET['api']) || !isset($_GET['redirect']) )
     {
@@ -68,6 +68,15 @@
    'bind' => 'f'.substr(md5(rand()), 0, 5)
    ), $atts ) );
 
+  $paid = false;
+  if (strlen(get_option( 'formcrafts_api' ))==24)
+  {
+    if (substr(get_option( 'formcrafts_api' ), -1)==1)
+    {
+      $paid = true;
+    }
+  }
+
   if ($id % 2 == 0)
   {
     $powered_text = 'made with <span>FormCrafts</span> - online form builder';
@@ -76,6 +85,9 @@
   {
     $powered_text = 'powered by <span>FormCrafts</span>';
   }
+  $powered_text = "<a class='fcpbl ".$align."' href='".$fc_path."?pw=pwl'>$powered_text</a>";
+
+  if ($paid==true) {  $powered_text=''; }
 
   if ($_SERVER['HTTP_HOST']=='localhost')
   {
@@ -106,7 +118,7 @@
 }
 else
 {
-  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div><a class='fcpbl ".$align."' href='".$fc_path."?pw=pwl'>$powered_text</a>";
+  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div>$powered_text";
 }
 }
 
@@ -115,13 +127,11 @@ function formcrafts_get_forms()
   global $fc_path;
   $api = get_option( 'formcrafts_api' );
 
-
-
-if (!function_exists('curl_version'))
-{
-echo json_encode(array('failed'=>'FormCraft requires the PHP extension cURL. You don\'t appear to have it. Please contact your web host.', 'failedType'=>'curl'));
-die();
-}
+  if (!function_exists('curl_version'))
+  {
+    echo json_encode(array('failed'=>'FormCraft requires the PHP extension cURL. You don\'t appear to have it. Please contact your web host.', 'failedType'=>'curl'));
+    die();
+  }
 
   $ch = curl_init();
   curl_setopt_array($ch, array(
@@ -145,231 +155,231 @@ function formcrafts_wp_edit_button($context) {
   ?>
 
   <style>
-.fc-message
-{
-width: 100%;
-display: block;
-padding: 15px 0;
-text-align: center;
-}
-   #formcrafts-btn
-   {
-    border: 0;
-    box-shadow: 0;
-    background-color: #888;
-    color: white;
-    font-size: 12px;
-    padding: 6px 12px;
-    text-align: center;
-    margin: auto auto;
-    display: block;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px; 
-    cursor: pointer;
-    opacity: .93;
-    outline: none;
-    font-family: Helvetica, Arial;
-    display: inline-block;
-    text-decoration: none;
-    text-transform: none; 
-    margin-right: 5px;
-    margin-bottom: 4px;
-    background: rgb(74,140,232);
-    border-bottom: 1px solid rgb(27, 82, 165);
-    background: rgba(41,119,229,1);
-  }
-  #formcrafts-btn-cover.active #formcrafts-btn
-  {
-    background: rgb(39, 118, 230);
-    box-shadow: 0px 1px 1px #0D2674 inset;
-    -moz-box-shadow: 0px 1px 1px #0D2674 inset;
-    -webkit-box-shadow: 0px 1px 1px #0D2674 inset;
-    border-bottom: 1px solid rgb(41,119,229); 
-  }       
-  #formcrafts-btn:hover
-  {
-    opacity: 1;
-    text-decoration: none;
-    text-transform: none;   
-  }
-  #formcrafts-btn-cover
-  {
-    display: inline-block;
-    position: relative;
-    z-index: 101;
-  }
-  #formcrafts-btn-tooltip
-  {
-    display: none;
-    width: 240px;
-    position: absolute;
-    background-color: #fff;
-    box-shadow: 0px 1px 9px #999;
-    -moz-box-shadow: 0px 1px 9px #999;
-    -webkit-box-shadow: 0px 1px 9px #999;
-    margin-left: -60px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    margin-top: 4px;
-    border: 1px solid #bbb;         
-  }
-  #formcrafts-btn-tooltip:after
-  {
-    content: '';
-    width: 0; 
-    height: 0; 
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent; 
-    border-bottom:9px solid #999;
-    position: absolute;
-    left: 50%;
-    margin-left: -9px;
-    top: 0;
-    margin-top: -9px;     
-  }
-  #formcrafts-btn-cover.active #formcrafts-btn-tooltip
-  {
-    display: block;
-  }
-  #formcrafts-btn-tooltip-forms
-  {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    max-height: 112px;
-    overflow: auto;       
-  }
-  #formcrafts-btn-tooltip-forms li
-  {
-    padding: 6px 9px;
-    margin: 0;
-    font-size: 12px;
-    display: block;
-    color: #888;
-    cursor: pointer;
-    background-color: #f0f0f0;
-  }
-  #formcrafts-btn-tooltip-forms li:first-child
-  {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    -moz-border-top-left-radius: 3px;
-    -moz-border-top-right-radius: 3px;
-    -webkit-border-top-left-radius: 3px;
-    -webkit-border-top-right-radius: 3px;
-  }
-  .formcrafts-btn-tooltip-type
-  {
-    display: inline-block;
-    width: 50%;
-    background-color: #f0f0f0;
-    font-size: 12px;
-    text-align: center;
-    padding: 6px 0;
-    cursor: pointer;
-    color: #888;
-  }   
-  .formcrafts-btn-tooltip-align
-  {
-    display: inline-block;
-    width: 33.3%;
-    background-color: #f0f0f0;
-    font-size: 12px;
-    text-align: center;
-    padding: 5px 0;
-    cursor: pointer;
-    color: #888;
-  }
-  .formcrafts-btn-tooltip-align
-  {
-    border-bottom: 1px solid #e6e6e6;
-  }
-  .formcrafts-btn-tooltip-align.active
-  {
-    border-bottom: 1px solid #fff;
-  }
+    .fc-message
+    {
+      width: 100%;
+      display: block;
+      padding: 15px 0;
+      text-align: center;
+    }
+    #formcrafts-btn
+    {
+      border: 0;
+      box-shadow: 0;
+      background-color: #888;
+      color: white;
+      font-size: 12px;
+      padding: 6px 12px;
+      text-align: center;
+      margin: auto auto;
+      display: block;
+      border-radius: 3px;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px; 
+      cursor: pointer;
+      opacity: .93;
+      outline: none;
+      font-family: Helvetica, Arial;
+      display: inline-block;
+      text-decoration: none;
+      text-transform: none; 
+      margin-right: 5px;
+      margin-bottom: 4px;
+      background: rgb(74,140,232);
+      border-bottom: 1px solid rgb(27, 82, 165);
+      background: rgba(41,119,229,1);
+    }
+    #formcrafts-btn-cover.active #formcrafts-btn
+    {
+      background: rgb(39, 118, 230);
+      box-shadow: 0px 1px 1px #0D2674 inset;
+      -moz-box-shadow: 0px 1px 1px #0D2674 inset;
+      -webkit-box-shadow: 0px 1px 1px #0D2674 inset;
+      border-bottom: 1px solid rgb(41,119,229); 
+    }       
+    #formcrafts-btn:hover
+    {
+      opacity: 1;
+      text-decoration: none;
+      text-transform: none;   
+    }
+    #formcrafts-btn-cover
+    {
+      display: inline-block;
+      position: relative;
+      z-index: 101;
+    }
+    #formcrafts-btn-tooltip
+    {
+      display: none;
+      width: 240px;
+      position: absolute;
+      background-color: #fff;
+      box-shadow: 0px 1px 9px #999;
+      -moz-box-shadow: 0px 1px 9px #999;
+      -webkit-box-shadow: 0px 1px 9px #999;
+      margin-left: -60px;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      margin-top: 4px;
+      border: 1px solid #bbb;         
+    }
+    #formcrafts-btn-tooltip:after
+    {
+      content: '';
+      width: 0; 
+      height: 0; 
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent; 
+      border-bottom:9px solid #999;
+      position: absolute;
+      left: 50%;
+      margin-left: -9px;
+      top: 0;
+      margin-top: -9px;     
+    }
+    #formcrafts-btn-cover.active #formcrafts-btn-tooltip
+    {
+      display: block;
+    }
+    #formcrafts-btn-tooltip-forms
+    {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      max-height: 112px;
+      overflow: auto;       
+    }
+    #formcrafts-btn-tooltip-forms li
+    {
+      padding: 6px 9px;
+      margin: 0;
+      font-size: 12px;
+      display: block;
+      color: #888;
+      cursor: pointer;
+      background-color: #f0f0f0;
+    }
+    #formcrafts-btn-tooltip-forms li:first-child
+    {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      -moz-border-top-left-radius: 3px;
+      -moz-border-top-right-radius: 3px;
+      -webkit-border-top-left-radius: 3px;
+      -webkit-border-top-right-radius: 3px;
+    }
+    .formcrafts-btn-tooltip-type
+    {
+      display: inline-block;
+      width: 50%;
+      background-color: #f0f0f0;
+      font-size: 12px;
+      text-align: center;
+      padding: 6px 0;
+      cursor: pointer;
+      color: #888;
+    }   
+    .formcrafts-btn-tooltip-align
+    {
+      display: inline-block;
+      width: 33.3%;
+      background-color: #f0f0f0;
+      font-size: 12px;
+      text-align: center;
+      padding: 5px 0;
+      cursor: pointer;
+      color: #888;
+    }
+    .formcrafts-btn-tooltip-align
+    {
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .formcrafts-btn-tooltip-align.active
+    {
+      border-bottom: 1px solid #fff;
+    }
 
-  .formcrafts-btn-tabs > div
-  {
-    display: none;
-  }
-  .formcrafts-btn-tabs > div.active
-  {
-    display: block;
-  }
-  .formcrafts-btn-nav .active,
-  #formcrafts-btn-tooltip-forms li.active       
-  {
-    background-color: white;
-    color: #444;
-  }
-  .formcrafts-link
-  {
-    text-align: center;
-    display: block;
-    color: #4488ff !important;
-    background-color: #f0f0f0;
-    line-height: 200%;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    -moz-border-bottom-left-radius: 3px;
-    -moz-border-bottom-right-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-  }
-  .formcrafts-link:hover
-  {
-    color: #4466ff !important;
-  }
-  #formcrafts-btn-shortcode
-  {
-    width: 100%;
-    font-size: 11px;
-    font-family: Monaco;
-    line-height: 150%;
-    outline: 0px;
-    resize: none;
-    color: #666;
-    border: 0px;
-    overflow: auto;
-    letter-spacing: -1px; padding: 6px 7px; margin: 3px 0px;
-    box-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    margin: 0px;
-    border-bottom: 1px solid #e6e6e6;
-    display: block;
-    background-color: #fff;
-  }
-  @-moz-document url-prefix() { 
-    #formcrafts-btn-shortcode {
-     font-family: Helvetica, Arial;
-     letter-spacing: 0.2px;
-     font-size: 12px;
-     line-height: 130%;
+    .formcrafts-btn-tabs > div
+    {
+      display: none;
+    }
+    .formcrafts-btn-tabs > div.active
+    {
+      display: block;
+    }
+    .formcrafts-btn-nav .active,
+    #formcrafts-btn-tooltip-forms li.active       
+    {
+      background-color: white;
+      color: #444;
+    }
+    .formcrafts-link
+    {
+      text-align: center;
+      display: block;
+      color: #4488ff !important;
+      background-color: #f0f0f0;
+      line-height: 200%;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+      -moz-border-bottom-left-radius: 3px;
+      -moz-border-bottom-right-radius: 3px;
+      -webkit-border-bottom-left-radius: 3px;
+      -webkit-border-bottom-right-radius: 3px;
+    }
+    .formcrafts-link:hover
+    {
+      color: #4466ff !important;
+    }
+    #formcrafts-btn-shortcode
+    {
+      width: 100%;
+      font-size: 11px;
+      font-family: Monaco;
+      line-height: 150%;
+      outline: 0px;
+      resize: none;
+      color: #666;
+      border: 0px;
+      overflow: auto;
+      letter-spacing: -1px; padding: 6px 7px; margin: 3px 0px;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      margin: 0px;
+      border-bottom: 1px solid #e6e6e6;
+      display: block;
+      background-color: #fff;
+    }
+    @-moz-document url-prefix() { 
+      #formcrafts-btn-shortcode {
+       font-family: Helvetica, Arial;
+       letter-spacing: 0.2px;
+       font-size: 12px;
+       line-height: 130%;
+     }
+   } 
+   #formcrafts-btn-cover.formcrafts-loading #formcrafts-btn-shortcode,
+   #formcrafts-btn-cover.formcrafts-loading .formcrafts-link,
+   #formcrafts-btn-cover.formcrafts-loading .formcrafts-btn-tooltip-align,
+   #formcrafts-btn-cover.formcrafts-loading .formcrafts-btn-tooltip-type,
+   #formcrafts-btn-cover.formcrafts-loading div
+   {
+     display: none;
    }
- } 
- #formcrafts-btn-cover.formcrafts-loading #formcrafts-btn-shortcode,
- #formcrafts-btn-cover.formcrafts-loading .formcrafts-link,
- #formcrafts-btn-cover.formcrafts-loading .formcrafts-btn-tooltip-align,
- #formcrafts-btn-cover.formcrafts-loading .formcrafts-btn-tooltip-type,
- #formcrafts-btn-cover.formcrafts-loading div
- {
-   display: none;
- }
- #formcrafts-btn-cover #formcrafts-btn-loading
- {
-   display: block;
-   text-align: center;
-   padding: 10px;
-   border-radius: 3px;
-   -moz-border-radius: 3px;
-   -webkit-border-radius: 3px;
- }
-</style>
-<script>
+   #formcrafts-btn-cover #formcrafts-btn-loading
+   {
+     display: block;
+     text-align: center;
+     padding: 10px;
+     border-radius: 3px;
+     -moz-border-radius: 3px;
+     -webkit-border-radius: 3px;
+   }
+ </style>
+ <script>
   function formcrafts_refresh_shortcode()
   {
    var type = jQuery('.formcrafts-btn-tooltip-type.active').text();
@@ -405,7 +415,7 @@ jQuery(document).ready(function(){
   if (jQuery('#formcrafts-btn-tooltip-forms').text()!='loading...')
   {
    return false;
- }          
+ }
  jQuery.ajax({
    url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
    type: 'GET',
@@ -434,8 +444,8 @@ jQuery(document).ready(function(){
   {
    jQuery('#formcrafts-btn-tooltip').html("<div class='fc-message'>"+response.failed+"</div>");
  }
-  else
-  {
+ else
+ {
    jQuery('#formcrafts-btn-tooltip').html("<a style='color: #48e; font-size: 14px; margin: 20px 0px; display: block; text-align: center' target='_blank' href='<?php echo admin_url(); ?>admin.php?page=formcrafts_admin_page'>Click here and log in</a>");
  }
  formcrafts_refresh_shortcode();
@@ -514,32 +524,15 @@ function formcrafts_admin_page()
 {
  global $wp_version, $fc_path;
 
- if ($wp_version <= 3.8)
- {
-  ?>
-  <style>
-   #wpcontent, #wpfooter
-   {
-    margin-left: 146px;
-  }
-  .folded #wpcontent, .folded #wpfooter
-  {
-    margin-left: 33px;
-  }
-</style>
-<?
-}
-else
-{
-  ?>
-  <style>
+ ?>
+
+ <style>
    #wpcontent, #wpfooter
    {
     margin-left: 160px !important;
   }
 </style>
 <?php
-}
 $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
 ?>
 <style>
@@ -598,7 +591,7 @@ $captcha_url = plugins_url( 'views/captcha.php', __FILE__ );
     });   
   },
   onReady: function(){
-      if (window.formcrafts_api=='') { transport.postMessage('no api'); }
+    if (window.formcrafts_api=='') { transport.postMessage('no api'); }
   }
 });      
 </script> 

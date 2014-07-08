@@ -51,6 +51,9 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 == Changelog ==
 
+= 1.0.8 =
+* Introduced plans with higher submissions limit
+
 = 1.0.7 =
 * Shows an error if cURL isn't available
 
