@@ -11,7 +11,7 @@ Create gorgeous forms for your site using this drag-and-drop form builder.
 == Description ==
 
 ### Create Awesome Forms
-FormCrafts is a drag-and-drop form builder to create and embed forms, and track submissions. You can embed the forms as inline forms, or popup forms. The forms look gorgeous, too.
+FormCrafts is a drag-and-drop form builder to create and embed forms, and track submissions. You can embed the forms as inline forms, or popup forms. The forms look gorgeous, too. All the forms made with our form builder are responsive by default.
 
 ### Manage Submissions
 FormCrafts also has an intuitive submissions manager. You can manage your business workflow too. For example, you can create your own mini customer-support portal, or event registration platform. It has advanced searching, filtering, and exporting capabilities.
@@ -30,17 +30,19 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 1. Drag-and-drop form builder
 2. Multi-page forms
-3. Popup forms
+3. Embed popup forms, or inline forms
 4. Conditional logic
-5. Use math formulas in forms
-6. Special fields (star rating field, smiley rating field, sliders ...)
-7. SSL secured
-8. Add tags to submissions
-9. Send autoresponders, with customized data
-10. Accept multiple files
-11. Customizable email notifications
-12. Auto-save form data (allows users to finish filling the form later)
-13. Export all submissions to CSV
+5. Conditionally set email recipients, or redirection path on form submission
+6. Use math formulas in forms
+7. Special fields (star rating field, smiley rating field, sliders ...)
+8. SSL secured forms
+9. Add tags to submissions
+11. Advanced search bar for searching submissions
+11. Send autoresponders, with customized email body
+12. Accept multiple files
+13. Customizable email notifications
+14. Auto-save form data (allows users to finish filling the form later)
+15. Export all submissions to CSV
 
 == Screenshots ==
 
