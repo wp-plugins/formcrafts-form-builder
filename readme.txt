@@ -51,6 +51,10 @@ You can check out some [sample forms here](http://formcrafts.com/examples): cont
 
 == Changelog ==
 
+= 1.0.9 =
+* Added alt tag for images
+* Limited release payment forms
+
 = 1.0.8 =
 * Introduced plans with higher submissions limit
 

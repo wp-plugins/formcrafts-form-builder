@@ -102,7 +102,7 @@
  {
    if ( $align=='left' || $align=='right' )
    {   
-     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'".$align."','t':'".$content."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a id='#".$bind."_a' href='".$fc_path."a/".$id."'></a>";
+     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'".$align."','t':'".$content."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==window.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a id='#".$bind."_a' href='".$fc_path."a/".$id."'>".$name."</a>";
    }
    else
    {
