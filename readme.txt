@@ -1,6 +1,6 @@
 === FormCrafts - Form Builder ===
 Contributors: nish@ncrafts.net
-Tags: contact form builder, form builder, form, forms, widget, contact form, feedback form builder, email form builder, ajax form builder, captcha, file upload, newsletter form, customer support form builder, drag and drop form builder, lead generation form builder, event planner form builder, survey form builder
+Tags: contact form builder, form builder, contact form 7, form, forms, widget, contact form, feedback form builder, email form builder, ajax form builder, captcha, file upload, newsletter form, customer support form builder, drag and drop form builder, lead generation form builder, event planner form builder, survey form builder
 Requires at least: 3.4
 Tested up to: 3.9
 License: GPLv2 or later
@@ -14,7 +14,7 @@ Create gorgeous forms for your site using this drag-and-drop form builder.
 FormCrafts is a drag-and-drop form builder to create and embed forms, and track submissions. Our WYSIWYG form builder is fast, easy-to-use and offers extensive customization.
 
 ### Create Awesome Forms
-Forms don't have to look ugly anymore. We have spent a lot of time on our form builder platform to make sure all the forms made with FormCrafts form builder are as stylish and beautiful as your website. All our forms are responsive to all devices, by default.
+Forms don't have to look ugly anymore. We have spent a lot of time on our form builder platform to make sure all the forms made with FormCrafts form builder are as stylish and beautiful as your website. All our forms are responsive to all devices, by default. FormCrafts form builder is a great alternate to other form builders like contact form 7
 
 ### Manage Submissions
 FormCrafts form builder also has an intuitive submissions manager. You can manage your business work-flow too. For example, you can create your own mini customer-support portal, or event registration platform. It has advanced searching, filtering, and exporting capabilities.
