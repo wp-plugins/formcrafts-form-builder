@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.10
+ * Version: 1.0.11
  * Author: nCrafts
  * Author URI: http://ncrafts.net
  * License: GPL2
@@ -85,6 +85,14 @@
   {
     $powered_text = 'powered by <span>FormCrafts</span>';
   }
+  if (strpos(strtolower($name), 'contact')!==false)
+  {
+    $powered_text = 'Contact Form by <span>FormCrafts</span>';
+  }
+  if (strpos(strtolower($name), 'feedback')!==false)
+  {
+    $powered_text = 'FeedBack Form by <span>FormCrafts</span>';
+  }
   $powered_text = "<a class='fcpbl ".$align."' href='".$fc_path."?pw=pwl'>$powered_text</a>";
 
   if ($paid==true) {  $powered_text=''; }
@@ -102,23 +110,23 @@
  {
    if ( $align=='left' || $align=='right' )
    {   
-     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'".$align."','t':'".$content."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src='https://'+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a id='#".$bind."_a' href='".$fc_path."a/".$id."'>".$name."</a>";
+     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'".$align."','t':'".$content."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==document.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a id='#".$bind."_a' href='".$fc_path."a/".$id."'>".$name."</a>";
    }
    else
    {
     if ($content==null || empty($content))
     {
-      return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src='https://'+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script>";
+      return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==document.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script>";
     }
     else
     {
-     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src='https://'+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a href='".$fc_path.'a/'.$id."' data-target='#".$bind."' data-toggle='fcmodal'>".$content."</a>";
+     return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'m':'true','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==document.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><a href='".$fc_path.'a/'.$id."' data-target='#".$bind."' data-toggle='fcmodal'>".$content."</a>";
    }     
  }
 }
 else
 {
-  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src='https://'+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div>$powered_text";
+  return "<script type='text/javascript'>var _fo=_fo||[];_fo.push({'d':'".$align."','c':'".$bind."','i':".$id."});if(typeof fce=='undefined'){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=('https:'==document.location.protocol?'https://':'http://')+'".$short_path."js/fc.js';var fi=document.getElementsByTagName('script')[0];fi.parentNode.insertBefore(s,fi);fce=1;}</script><div id='".$bind."'><a href='http://".$short_path.'a/'.$id."'>$name</a></div>$powered_text";
 }
 }
 
@@ -337,7 +345,7 @@ function formcrafts_wp_edit_button($context) {
     {
       width: 100%;
       font-size: 11px;
-      font-family: Monaco;
+      font-family: 'Lucida Console',Monaco;
       line-height: 150%;
       outline: 0px;
       resize: none;
