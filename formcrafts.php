@@ -21,8 +21,8 @@
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
  * Version: 1.0.11
- * Author: nCrafts
- * Author URI: http://ncrafts.net
+ * Author: FormCrafts
+ * Author URI: http://formcrafts.com
  * License: GPL2
 
 */
