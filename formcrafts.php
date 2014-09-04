@@ -42,7 +42,7 @@
    add_action('wp_ajax_nopriv_formcrafts_get_forms', 'formcraft_get_forms');
    add_action('wp_ajax_formcrafts_save_api', 'formcrafts_save_api');
    add_action('wp_ajax_nopriv_formcrafts_save_api', 'formcraft_save_api');
-   add_shortcode( 'formcrafts', 'add_formcrafts_shortcode' );   
+   add_shortcode('formcrafts', 'add_formcrafts_shortcode');
 
    function formcrafts_register_script()
    {

@@ -2,7 +2,7 @@
 Contributors: nish@ncrafts.net
 Tags: contact form builder, form builder, contact form 7, form, forms, widget, contact form, feedback form builder, email form builder, ajax form builder, captcha, file upload, newsletter form, customer support form builder, drag and drop form builder, lead generation form builder, event planner form builder, survey form builder
 Requires at least: 3.4
-Tested up to: 3.9
+Tested up to: 4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
