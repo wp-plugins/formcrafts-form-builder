@@ -122,6 +122,9 @@ You can read our Terms of Service [here](http://formcrafts.com/terms-of-service)
 
 == Changelog ==
 
+= 1.0.12 =
+* Added height attribute for shortcodes
+
 = 1.0.10 =
 * Made all forms use SSL by default
 
