@@ -20,7 +20,7 @@
  * Plugin Name: FormCrafts
  * Plugin URI: http://formcrafts.com
  * Description: A drag-and-drop form builder, to create amazing forms and manage submissions.
- * Version: 1.0.12
+ * Version: 1.0.13
  * Author: FormCrafts
  * Author URI: http://formcrafts.com
  * License: GPL2
@@ -396,102 +396,11 @@ function formcrafts_wp_edit_button($context) {
      -webkit-border-radius: 3px;
    }
  </style>
- <script>
-  function formcrafts_refresh_shortcode()
-  {
-   var type = jQuery('.formcrafts-btn-tooltip-type.active').text();
-   var index = jQuery('.formcrafts-btn-tooltip-type.active').index();
-   var align = jQuery('.formcrafts-btn-tooltip-align.active:eq('+index+')').text().toLowerCase();
-   var form = jQuery('#formcrafts-btn-tooltip-forms li.active').attr('data-index');
-   var name = jQuery('#formcrafts-btn-tooltip-forms li.active').text();
-   var rand = 'f'+Math.random().toString(36).slice(-4);
-
-   if (type=='Inline Form')
-   {
-    var shortcode = "[formcrafts id='"+form+"' name='"+name+"' align='"+align+"'][/formcrafts]";
-  }
-  else
-  {
-    var shortcode = "[formcrafts id='"+form+"' type='popup' align='"+align+"']Click Here[/formcrafts]";
-  }
-  jQuery('#formcrafts-btn-shortcode').text(shortcode);
-}
-jQuery(document).mouseup(function (e)
-{
- var container = jQuery('#formcrafts-btn-cover');
- if (!container.is(e.target)
-  && container.has(e.target).length === 0)
- {
-  container.removeClass('active');
-}
-});       
-jQuery(document).ready(function(){
- jQuery('body').on('click', '#formcrafts-btn', function(event){
-  event.preventDefault();
-  jQuery(this).parent().toggleClass('active');
-  if (jQuery('#formcrafts-btn-tooltip-forms').text()!='loading...')
-  {
-   return false;
- }
- jQuery.ajax({
-   url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-   type: 'GET',
-   data: 'action=formcrafts_get_forms',
-   dataType: 'JSON',
- }).done(function(response){
-   if (response.success && response.forms)
-   {
-    var html = '';
-    if (response.forms.length==0)
-    {
-      html = '<center><bR>No forms created<br><br></center>'; 
-      jQuery('#formcrafts-btn-tooltip').html(html);
-    }
-    else
-    {
-      for (form in response.forms)
-      {
-        html = form == 0 ? html + '<li data-index="'+response.forms[form]['id']+'" class="active">'+response.forms[form]['name']+'</li>' : html + '<li data-index="'+response.forms[form]['id']+'">'+response.forms[form]['name']+'</li>';
-      }
-      jQuery('#formcrafts-btn-tooltip-forms').html(html);
-    }
-
-  }
-  else if (response.failedType)
-  {
-   jQuery('#formcrafts-btn-tooltip').html("<div class='fc-message'>"+response.failed+"</div>");
- }
- else
- {
-   jQuery('#formcrafts-btn-tooltip').html("<a style='color: #48e; font-size: 14px; margin: 20px 0px; display: block; text-align: center' target='_blank' href='<?php echo admin_url(); ?>admin.php?page=formcrafts_admin_page'>Click here and log in</a>");
- }
- formcrafts_refresh_shortcode();
- jQuery('#formcrafts-btn-cover').removeClass('formcrafts-loading');
-});           
-});
-
-jQuery('body').on('click', '.formcrafts-btn-nav > span', function(event){
- jQuery(this).parent().find('> span').removeClass('active');
- jQuery(this).addClass('active');
- var abc = jQuery(this).index() + 1;
- jQuery(this).parent().find('> .formcrafts-btn-tabs > div').hide();
- jQuery(this).parent().find('> .formcrafts-btn-tabs > div').removeClass('active');
-
- jQuery(this).parent().find('> .formcrafts-btn-tabs > div:nth-child('+abc+')').show();
- jQuery(this).parent().find('> .formcrafts-btn-tabs > div:nth-child('+abc+')').addClass('active');
- formcrafts_refresh_shortcode();
-});
-
-jQuery('body').on('click', '#formcrafts-btn-tooltip-forms li', function(event){
- jQuery(this).parent().find('> li').removeClass('active');
- jQuery(this).addClass('active');
- formcrafts_refresh_shortcode();
-})
-
-});
-</script>
 
 <?php
+wp_enqueue_script('fc-admin-page', plugins_url( 'assets/admin-fc.js', __FILE__ ));
+wp_localize_script('fc-admin-page', 'FC', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+
 $context .= "
 <div id='formcrafts-btn-cover' class='formcrafts-loading'>
   <button id='formcrafts-btn'><span style='font-size: 15px; line-height: 10px; font-weight: bold'>+</span> FormCrafts Form</button>
